@@ -2,7 +2,7 @@
 const nextConfig = {
   images:{
     domains:[
-      "images.genius.com"
+      "images.genius.com", "assets.genius.com"
     ]
   }
 }

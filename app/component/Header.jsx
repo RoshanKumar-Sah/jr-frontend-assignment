@@ -1,21 +1,46 @@
 'use client'
 
-export default function Header(){
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-    function handleSearch(event){
-event.preventDefault()
+export default function Header() {
+
+
+
+
+    const router = useRouter()
+
+    function handleSearch(event) {
+
+        event.preventDefault()
+        if (event.target.search_term.value) {
+
+            router.push('/searchResult?q='+event.target.search_term.value)
+
+
+        }
+
     }
 
+   
 
 
-    return(
-        <div className="container flex flex-col sm:flex-row sm:justify-between items-center gap-4 sm:gap-0 py-4">
-        <h2>Music&nbsp;Sansar</h2> 
-        <form className="w-full sm:w-fit flex" onSubmit={handleSearch}>
-            <input type="text" name="search_term" className="border border-black rounded-sm p-1 outline-none mr-4 w-full" placeholder="Search Album" />
-            <button type="submit" className="border border-black bg-white py-1 px-1 rounded-sm">Search</button>
-        </form>
+
+
+
+
+
+
+    return (
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 sm:gap-0 py-4">
+            <h2><Link href={"/"}>Music&nbsp;Sansar</Link></h2>
+            <form className="w-full sm:w-fit flex" onSubmit={handleSearch}>
+                <input type="text" name="search_term" className="border border-black rounded-sm p-1 outline-none mr-4 w-full" placeholder="Search Album" />
+                <button type="submit" className="border border-black bg-white py-1 px-1 rounded-sm">Search</button>
+            </form>
         </div>
-        
+
     )
 }
