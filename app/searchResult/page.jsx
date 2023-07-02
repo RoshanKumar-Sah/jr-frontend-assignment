@@ -14,6 +14,7 @@ export default function SearchResult(){
     const searchParams = useSearchParams()
 
     let [data, setData] = useState([])
+    let [isLoading, setIsLoading] = useState(false)
     
   
     let arr =[]
@@ -22,7 +23,7 @@ export default function SearchResult(){
     useEffect(()=>{
 
         console.log(searchParams.toString());
-
+setIsLoading(true)
         let search_term = searchParams.toString()
         search_term = search_term.split("=")[1]
         search_term = search_term.replace(/\+/g, ' ');
@@ -38,14 +39,17 @@ export default function SearchResult(){
                 console.log(res.data.sections);
                 if(res.data.sections){
                     setData(res.data.sections)
+                    setIsLoading(false)
                 }
                 else{
                     setData([])
+                    setIsLoading(false)
                 }
                
 
             }).catch(err => {
                 console.log(err);
+                setIsLoading(false)
             })
 
 
@@ -85,10 +89,18 @@ console.log(albums);
     return(
         <div className="container">
 
+       
+
 <Header />
+
+
 
             <div>Search Results</div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+
+            {
+            isLoading && <div className="h-full w-full">Loading....</div>
+        }
         {
             albums.map((album, idx)=>{
                 let obj = {item:{}}
