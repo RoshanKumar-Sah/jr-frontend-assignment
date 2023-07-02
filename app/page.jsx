@@ -37,7 +37,7 @@ let albums = await getData()
       <Header />
 
 
-      <div className="pt-8">
+      <div className="py-8">
 <h2 className="font-semibold text-lg">Albums</h2>
 
 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
